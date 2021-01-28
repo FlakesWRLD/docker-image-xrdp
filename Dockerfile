@@ -8,10 +8,10 @@ RUN apt-get -qq install -y git g++ gcc autoconf automake \
     libssl-dev libfreeimage-dev swig
 
 # Installing mega sdk python binding
-ENV MEGA_SDK_VERSION '3.8.0'
+ENV MEGA_SDK_VERSION '3.7.3h'
 RUN git clone https://github.com/meganz/sdk.git sdk && cd sdk &&\
     git checkout v$MEGA_SDK_VERSION && ./autogen.sh && \
     ./configure --disable-silent-rules --enable-python --disable-examples && \
     make -j$(nproc --all) && cd bindings/python/ && \
     python3 setup.py bdist_wheel && cd dist/ && \
-    pip3 install --no-cache-dir megasdk-$MEGA_SDK_VERSION-*.whl
+    pip3 install --no-cache-dir megasdk-*.whl
